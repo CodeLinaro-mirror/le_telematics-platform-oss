@@ -1,0 +1,35 @@
+{
+    "unicast" : "192.168.200.10",
+    "device" : "lxc_br0",
+    "logging" :
+    {
+        "level" : "error",
+        "console" : "true",
+        "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
+        "version" : { "enable" : "false", "interval" : "10" },
+        "dlt" : "false"
+    },
+    "applications" :
+    [
+        {
+            "name" : "telePlatSomeipGWSvc_1",
+            "id" : "0x0101"
+        }
+    ],
+    "routing" : "telePlatSomeipGWSvc_1",
+    "network" : "telePlatSomeipGWSvc_1",
+    "service-discovery" :
+    {
+        "enable" : "true",
+        "multicast" : "224.0.0.1",
+        "port" : "30490",
+        "protocol" : "udp",
+        "initial_delay_min" : "10",
+        "initial_delay_max" : "100",
+        "repetitions_base_delay" : "200",
+        "repetitions_max" : "3",
+        "ttl" : "16777215",
+        "cyclic_offer_delay" : "5000",
+        "request_response_delay" : "1500"
+    }
+}
