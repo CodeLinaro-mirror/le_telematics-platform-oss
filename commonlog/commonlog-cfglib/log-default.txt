@@ -1,0 +1,42 @@
+# log-default.txt - human-editable source for cfg (binary config) data.
+#
+# Converted to commonlog.conf by convert_to_cfg.sh during cfg-lib builds.
+#
+# Blank lines and lines starting with # are ignored. Fields are
+# whitespace-delimited. Sink/level are the raw clog_backend_t/clog_level_t
+# integer values:
+#   sink:  0=CONSOLE 1=DLT 2=DIAG 3=SYSLOG 4=LOGCAT 5=FILE
+#   level: 0=OFF 1=FATAL 2=ERROR 3=WARN 4=INFO 5=DEBUG 6=VERBOSE
+#
+# Record types:
+#   GLOBAL  <sink> <level>                   -- final fallback default
+#   SETTING <key> <value>                    -- global runtime setting
+#   APP     <app_id> <sink> <level>         -- per-app default
+#   CTX     <app_id> <context_id> <level>   -- per-app context override
+#   LCTX    <context_id> <level>            -- library-context default
+#
+# Supported SETTING keys:
+#   add_clogdetails_in_msg 0|1
+#       Add backend-specific APPID/CONTEXTID details derived from the numeric
+#       IDs and registered app/context tags.
+#   sink_file_max_size_mb <positive-int>
+#       Max size in MB for the active <timestamp>_<APPID>.txt file.
+#   sink_file_rotate_count <non-negative-int>
+#       Max number of archived timestamped files retained per app in addition
+#       to the active file (total retained per app = value + 1).
+#
+# CLOG library internal diagnostics always use syslog with a CLOG-INTERNAL prefix.
+
+# --- section 2: global default ---
+GLOBAL 1 4
+
+# --- section 3: global runtime settings ---
+SETTING add_clogdetails_in_msg 1
+SETTING sink_file_max_size_mb 10
+SETTING sink_file_rotate_count 2
+
+# --- section 4: per-app defaults ---
+
+# --- section 5: library-context defaults ---
+
+# --- section 6: per-app context overrides ---
